@@ -13,4 +13,5 @@
 .externalNativeBuild
 .cxx
 .idea
-/buildSrc/
+/buildSrc/.
+/buildSrc/build
