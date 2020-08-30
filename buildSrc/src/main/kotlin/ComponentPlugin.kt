@@ -84,13 +84,18 @@ class ComponentPlugin : BasePlugin<Project>() {
             isApp = isDefinitelyHost || project.name.trim() == runModuleName
         }
 
-        project.setProperty("isApp", isApp)
+        if (project.hasProperty("isApp")){
+            project.setProperty("isApp", isApp)
+        }
         println("properties isApp:$propertiesisApp")
         println("finally isApp:$isApp")
         if (isApp) {
             project.apply(applicationPlugin)
             //如果是打包, 处理依赖, 普通同步不操作
             addDepModule(project)
+
+            //add transform
+            project.extensions.getByType(AppExtension::class.java).registerTransform(ComponentTransform(project))
         } else {
             project.apply(libraryPlugin)
         }

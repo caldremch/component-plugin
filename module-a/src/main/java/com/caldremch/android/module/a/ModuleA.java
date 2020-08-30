@@ -7,4 +7,7 @@ package com.caldremch.android.module.a;
  * @describe
  **/
 public class ModuleA {
+    public void a(){
+        ModuleComponent a = new ModuleComponent();
+    }
 }
