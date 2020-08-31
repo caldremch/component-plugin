@@ -1,5 +1,7 @@
 package com.caldremch.andorid.plugin.api
 
+import android.content.Context
+
 /**
  *
  * @author Caldremch
@@ -11,7 +13,6 @@ package com.caldremch.andorid.plugin.api
  * @describe
  *
  **/
-@Target(AnnotationTarget.CLASS)
-@Retention(AnnotationRetention.SOURCE)
-annotation class Component {
+interface IRegisterComponent {
+    fun init(context: Context)
 }
