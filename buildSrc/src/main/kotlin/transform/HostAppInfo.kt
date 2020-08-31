@@ -15,18 +15,29 @@ class HostAppInfo {
 
     var hostAppName: String = ""
     var hostAppNameSign: String = ""
-    private var exist = false;
+    var hostAppFilePath:String = ""
+    private var isFound = false;
 
     fun clear() {
         hostAppName = ""
         hostAppNameSign = ""
-        exist = false
+        hostAppFilePath = ""
+        isFound = false
     }
 
-    fun initByName(name: String) {
-        if (exist) throw RuntimeException("only one host app can be exist")
+    fun initByName(name: String, path:String) {
+        if (isFound) throw RuntimeException("only one host app can be exist")
         hostAppName = name
+        hostAppFilePath = path
         hostAppNameSign = "L${hostAppName.replace(".", "/")}"
-        exist = true
+        isFound = true
+    }
+
+    fun isFound():Boolean{
+        return isFound
+    }
+
+    override fun toString(): String {
+        return hostAppName
     }
 }

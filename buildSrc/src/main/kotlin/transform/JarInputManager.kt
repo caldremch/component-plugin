@@ -26,7 +26,7 @@ object JarInputManager {
                 if (it.name.endsWith(SdkConstants.DOT_CLASS)) {
                     val classReader = ClassReader(jarFile.getInputStream(entry).readBytes())
                     val classWriter = ClassWriter(ClassWriter.COMPUTE_MAXS)
-                    val classVisitor = FindInjectClzClassVisitor(classWriter, null)
+                    val classVisitor = FindInjectClzClassVisitor(classWriter, "")
                     classReader.accept(classVisitor, ClassReader.EXPAND_FRAMES)
                 }
             }

@@ -22,7 +22,7 @@ import java.util.*
  *
  **/
 
-class FindInjectClzClassVisitor(classVisitor: ClassVisitor?, var filePath: String?) :
+class FindInjectClzClassVisitor(classVisitor: ClassVisitor?, var filePath: String) :
     ClassVisitor(ASM7, classVisitor) {
 
     private var hasComponentApp = false //组件app
@@ -56,16 +56,6 @@ class FindInjectClzClassVisitor(classVisitor: ClassVisitor?, var filePath: Strin
         }
     }
 
-    override fun visitTypeAnnotation(
-        typeRef: Int,
-        typePath: TypePath?,
-        descriptor: String?,
-        visible: Boolean
-    ): AnnotationVisitor {
-
-        return super.visitTypeAnnotation(typeRef, typePath, descriptor, visible)
-    }
-
     override fun visitAnnotation(descriptor: String?, visible: Boolean): AnnotationVisitor {
         if (descriptor == ClassUtils.getClassPath(HostApp::class.java)) {
             Logger.log("java host app found:$descriptor")
@@ -78,7 +68,7 @@ class FindInjectClzClassVisitor(classVisitor: ClassVisitor?, var filePath: Strin
         if (hasComponentApp) {
             ComponentManager.registerComponents.add(name)
         } else if (hasHostApp) {
-            ComponentManager.hostApp.initByName(name)
+            ComponentManager.hostApp.initByName(name, filePath)
         }
     }
 }
