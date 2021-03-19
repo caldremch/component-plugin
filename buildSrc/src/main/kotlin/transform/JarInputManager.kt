@@ -3,12 +3,14 @@ package com.caldremch.plugin.utils
 import com.android.SdkConstants
 import com.android.build.api.transform.Format
 import com.android.build.api.transform.TransformInput
+import com.android.build.api.transform.TransformInvocation
 import com.android.build.api.transform.TransformOutputProvider
+import com.caldremch.plugin.visitor.FindInjectClzClassVisitor
 import org.apache.commons.codec.digest.DigestUtils
 import org.apache.commons.io.FileUtils
 import org.objectweb.asm.ClassReader
 import org.objectweb.asm.ClassWriter
-import com.caldremch.plugin.visitor.FindInjectClzClassVisitor
+import java.io.File
 import java.util.jar.JarFile
 import java.util.zip.ZipEntry
 
@@ -17,6 +19,8 @@ import java.util.zip.ZipEntry
  * 从jar包中找出继承IApp的类
  **/
 object JarInputManager {
+
+
     fun input(input: TransformInput, outputProvider: TransformOutputProvider) {
         input.jarInputs.forEach { jarInput ->
             val jarFile = JarFile(jarInput.file)

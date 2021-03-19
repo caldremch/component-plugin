@@ -2,9 +2,6 @@ import PluginConstant.RES_PREFIX
 import com.android.build.gradle.AppExtension
 import com.android.build.gradle.BaseExtension
 import com.android.build.gradle.LibraryExtension
-import com.android.build.gradle.internal.dsl.BuildType
-import com.android.builder.core.BuilderConstants
-import org.gradle.api.NamedDomainObjectContainer
 import org.gradle.api.Project
 import org.gradle.api.tasks.SourceSet
 import java.util.*
@@ -96,6 +93,7 @@ class ComponentPlugin : BasePlugin<Project>() {
 
             //add transform
             project.extensions.getByType(AppExtension::class.java).registerTransform(ComponentTransform(project))
+            project.extensions.getByType(AppExtension::class.java).registerTransform(MethodTraceTransform(project))
         } else {
             project.apply(libraryPlugin)
         }
