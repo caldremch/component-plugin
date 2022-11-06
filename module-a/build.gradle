@@ -43,5 +43,5 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation(project(":service"))
     implementation(project(":plugin-api"))
-
+    implementation "io.insert-koin:koin-android:3.2"
 }

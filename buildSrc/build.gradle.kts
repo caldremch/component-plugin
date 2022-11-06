@@ -2,7 +2,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     `kotlin-dsl`
-    kotlin("jvm") version "1.4.31"
+    kotlin("jvm") version "1.6.10"
 }
 
 
@@ -13,7 +13,7 @@ buildscript {
         google()
     }
     dependencies {
-        classpath("com.android.tools.build:gradle:4.0.1")
+        classpath("com.android.tools.build:gradle:4.2.2")
     }
 
 }
@@ -28,7 +28,7 @@ repositories {
 }
 
 dependencies {
-    implementation("com.android.tools.build:gradle:4.0.1")
+    implementation("com.android.tools.build:gradle:4.2.2")
     implementation(gradleApi())
     implementation(kotlin("stdlib-jdk8"))
     implementation("com.caldremch.android:plugin-api:1.0.0")

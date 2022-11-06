@@ -1,6 +1,6 @@
-include ':plugin-api'
-include ':service'
-include ':module-b'
-include ':module-a'
-include ':app'
+//include ':plugin-api'
+//include ':service'
+//include ':module-b'
+//include ':module-a'
+//include ':app'
 rootProject.name = "component-plugin"
