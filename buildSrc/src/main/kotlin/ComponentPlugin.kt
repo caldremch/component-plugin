@@ -93,7 +93,7 @@ class ComponentPlugin : BasePlugin<Project>() {
 
             //add transform
             project.extensions.getByType(AppExtension::class.java).registerTransform(ComponentTransform(project))
-            project.extensions.getByType(AppExtension::class.java).registerTransform(MethodTraceTransform(project))
+//            project.extensions.getByType(AppExtension::class.java).registerTransform(MethodTraceTransform(project))
         } else {
             project.apply(libraryPlugin)
         }

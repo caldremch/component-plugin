@@ -1,16 +1,13 @@
-package com.caldremch.plugin.utils
+package transform
 
 import com.android.SdkConstants
 import com.android.build.api.transform.Format
 import com.android.build.api.transform.TransformInput
-import com.android.build.api.transform.TransformInvocation
 import com.android.build.api.transform.TransformOutputProvider
-import com.caldremch.plugin.visitor.FindInjectClzClassVisitor
-import org.apache.commons.codec.digest.DigestUtils
-import org.apache.commons.io.FileUtils
+//import org.apache.commons.codec.digest.DigestUtils
+//import org.apache.commons.io.FileUtils
 import org.objectweb.asm.ClassReader
 import org.objectweb.asm.ClassWriter
-import java.io.File
 import java.util.jar.JarFile
 import java.util.zip.ZipEntry
 
@@ -34,18 +31,18 @@ object JarInputManager {
                     classReader.accept(classVisitor, ClassReader.EXPAND_FRAMES)
                 }
             }
-            var jarName = jarInput.name
-            val md5Name = DigestUtils.md5Hex(jarInput.file.absolutePath)
-            if (jarName.endsWith(".jar")) {
-                jarName = jarName.substring(0, jarName.length - 4)
-            }
-
-            val dest = outputProvider.getContentLocation(
-                    jarName + md5Name,
-                    jarInput.contentTypes, jarInput.scopes, Format.JAR
-            )
-
-            FileUtils.copyFile(jarInput.file, dest)
+//            var jarName = jarInput.name
+//            val md5Name = DigestUtils.md5Hex(jarInput.file.absolutePath)
+//            if (jarName.endsWith(".jar")) {
+//                jarName = jarName.substring(0, jarName.length - 4)
+//            }
+//
+//            val dest = outputProvider.getContentLocation(
+//                    jarName + md5Name,
+//                    jarInput.contentTypes, jarInput.scopes, Format.JAR
+//            )
+//
+//            FileUtils.copyFile(jarInput.file, dest)
         }
     }
 }
