@@ -1,6 +1,7 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
     `kotlin-dsl`
+    id ("java-gradle-plugin")
 }
 
 repositories {
@@ -24,4 +25,13 @@ dependencies {
     api ("org.ow2.asm:asm-commons:$asm_version")
     api ("org.ow2.asm:asm-tree:$asm_version")
     api ("org.ow2.asm:asm-util:$asm_version")
+}
+
+gradlePlugin {
+    plugins {
+        create("myPlugins") {
+            id = "component.android"
+            implementationClass = "ComponentPlugin"
+        }
+    }
 }

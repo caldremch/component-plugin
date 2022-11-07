@@ -1,17 +1,19 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("component.android")
 }
+
 android {
-    compileSdk = 33
-    namespace = "com.caldremch.android.plugin"
+    namespace "com.caldremch.android.plugin"
+    compileSdk 33
 
     defaultConfig {
         applicationId "com.caldremch.android.plugin"
-        minSdk = 21
-        targetSdk =  33
-        versionCode = 1
-        versionName =  "1.0"
+        minSdk 21
+        targetSdk 33
+        versionCode 1
+        versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -34,7 +36,7 @@ android {
             signingConfig signingConfigs.config
         }
 
-        debug{
+        debug {
             debuggable true
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
@@ -43,7 +45,7 @@ android {
     }
 
 
-    compileOptions{
+    compileOptions {
         targetCompatibility JavaVersion.VERSION_11
         sourceCompatibility JavaVersion.VERSION_11
     }
@@ -56,7 +58,6 @@ android {
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation 'androidx.appcompat:appcompat:1.5.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     testImplementation 'junit:junit:4.13.2'

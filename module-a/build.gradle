@@ -1,23 +1,20 @@
 plugins {
-    id("com.android.application")
-    id("org.jetbrains.kotlin.android")
+    id("component.android")
 }
 
-//pluginManager.apply(ComponentPlugin::class.java)
 def app = false
 if (hasProperty("isApp")) {
     app = isApp.toBoolean()
 }
 
 android {
-    compileSdk = 33
-    namespace = "com.caldremch.android.module.a"
-
+    namespace  "com.caldremch.android.module.a"
+    compileSdk  33
     defaultConfig {
-        minSdk = 21
-        targetSdk =  33
-        versionCode = 1
-        versionName =  "1.0"
+        minSdk  21
+        targetSdk   33
+        versionCode  1
+        versionName  "1.0"
         consumerProguardFiles "consumer-rules.pro"
         if (app){
             applicationId "com.caldremch.android.module.a"
@@ -35,9 +32,9 @@ android {
         sourceCompatibility JavaVersion.VERSION_11
     }
 
-    kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_11.toString()
-    }
+//    kotlinOptions {
+//        jvmTarget = JavaVersion.VERSION_11.toString()
+//    }
 
 
 }
@@ -48,6 +45,6 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.5.1'
     implementation(project(":service"))
     implementation(project(":plugin-api"))
-    implementation "io.insert-koin:koin-android:3.2.0"
+    implementation "io.insert-koin:koin-core:3.2.2"
 
 }

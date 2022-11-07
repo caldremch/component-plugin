@@ -2,9 +2,14 @@ import PluginConstant.RES_PREFIX
 import com.android.build.gradle.AppExtension
 import com.android.build.gradle.BaseExtension
 import com.android.build.gradle.LibraryExtension
+import com.android.build.gradle.internal.dependency.CONFIG_NAME_ANDROID_JDK_IMAGE
 import org.gradle.api.Project
 import org.gradle.api.tasks.SourceSet
-import java.util.*
+import org.gradle.internal.extensibility.DefaultConvention
+import org.gradle.internal.extensibility.ExtensionsStorage
+import java.lang.reflect.Field
+import java.util.LinkedHashMap
+import java.util.Locale
 
 /**
  *
@@ -87,15 +92,34 @@ class ComponentPlugin : BasePlugin<Project>() {
         println("properties isApp:$propertiesisApp")
         println("finally isApp:$isApp")
         if (isApp) {
-            project.apply(applicationPlugin)
+            val isApplyKotlinPlugin = true
+            val existAppPlugin = project.pluginManager.findPlugin("com.android.application") != null
+            if(existAppPlugin.not()){
+                project.plugins.apply("com.android.application")
+//                project.pluginManager.apply(com.android.build.gradle.internal.plugins.AppPlugin::class.java)
+                if(isApplyKotlinPlugin){
+                    project.pluginManager.apply("org.jetbrains.kotlin.android")
+                }
+            }
             //如果是打包, 处理依赖, 普通同步不操作
             addDepModule(project)
-
             //add transform
-            project.extensions.getByType(AppExtension::class.java).registerTransform(ComponentTransform(project))
+//            project.extensions.getByType(AppExtension::class.java).registerTransform(ComponentTransform(project))
 //            project.extensions.getByType(AppExtension::class.java).registerTransform(MethodTraceTransform(project))
         } else {
-            project.apply(libraryPlugin)
+
+            println("${project.name}当前插件:-----")
+            project.plugins.forEach {
+                println(it.toString())
+            }
+            println("${project.name}当前插件:-----")
+
+            val existLibraryPlugin = project.pluginManager.findPlugin("com.android.library") != null
+
+            if(existLibraryPlugin.not()){
+                project.pluginManager.apply("com.android.library")
+            }
+
         }
 
         //处理资源问题

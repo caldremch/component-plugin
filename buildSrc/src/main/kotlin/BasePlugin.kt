@@ -15,8 +15,8 @@ import org.gradle.api.Project
 
 abstract class BasePlugin<T> : Plugin<T> {
 
-    protected var libraryPlugin: HashMap<String, String> = hashMapOf("plugin" to PluginConstant.LIBRARY)
-    protected var applicationPlugin: HashMap<String, String> = hashMapOf("plugin" to PluginConstant.APPLICATION)
+//    protected var libraryPlugin: HashMap<String, String> = hashMapOf("plugin" to PluginConstant.LIBRARY)
+//    protected var applicationPlugin: HashMap<String, String> = hashMapOf("plugin" to PluginConstant.APPLICATION)
 
 
     protected fun println(message:String){

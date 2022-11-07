@@ -1,6 +1,9 @@
-apply plugin: ComponentPlugin
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
+plugins {
+    id("com.android.application")
+    id("org.jetbrains.kotlin.android")
+    id("component.android")
+}
+
 
 def app = false
 if (hasProperty("isApp")) {
@@ -8,16 +11,13 @@ if (hasProperty("isApp")) {
 }
 
 android {
-    compileSdk = 33
-
-    namespace = "com.caldremch.android.module.b"
-
-
+    namespace  "com.caldremch.android.module.b"
+    compileSdk  33
     defaultConfig {
-        minSdk = 21
-        targetSdk =  33
-        versionCode = 1
-        versionName =  "1.0"
+        minSdk  21
+        targetSdk   33
+        versionCode  1
+        versionName   "1.0"
         if (app){
             applicationId "com.caldremch.android.module.b"
         }
@@ -48,6 +48,6 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.5.1'
     implementation(project(":service"))
     implementation(project(":plugin-api"))
-    implementation "io.insert-koin:koin-android:3.2.0"
+    implementation "io.insert-koin:koin-core:3.2.2"
 
 }
