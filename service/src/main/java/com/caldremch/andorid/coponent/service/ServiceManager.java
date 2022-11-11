@@ -9,6 +9,7 @@ import android.text.TextUtils;
  **/
 
 
+import com.caldremch.andorid.plugin.api.IComponent;
 
 import java.util.HashMap;
 
@@ -22,11 +23,13 @@ public class ServiceManager {
 
     private HashMap<String, Object> services = new HashMap<>();
 
+    private HashMap<String, Class<? extends BaseService>> allServices = new HashMap<>();
+
     //注册的组件的集合
     private static volatile ServiceManager sInstance;
 
     private ServiceManager() {
-
+        allServices.put(IAService.class.getName(), IAService.class);
     }
 
     public static ServiceManager getInstance() {

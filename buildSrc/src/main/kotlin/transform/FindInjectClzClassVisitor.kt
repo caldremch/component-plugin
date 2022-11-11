@@ -11,7 +11,6 @@ import java.util.*
  *
  *Created by Caldremch on 2019/11/24.
  *
- * filePath: 当前visit的class的文件路径
  *
  **/
 
@@ -41,7 +40,8 @@ class FindInjectClzClassVisitor(classVisitor: ClassVisitor?, var filePath: Strin
 
 
     override fun visitAnnotation(descriptor: String?, visible: Boolean): AnnotationVisitor {
-////        println("visitAnnotation-->$descriptor")
+
+        Logger.e("visitAnnotation-->$descriptor")
 //        if (descriptor == ClassUtils.getClassPath(IComponent::class.java)){
 ////            println("visitAnnotation-->$descriptor")
 //            hasApplicationAnnotation = true

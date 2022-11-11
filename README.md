@@ -184,3 +184,9 @@ Unable to decide if config caching is enabled
 java.lang.NoSuchMethodError: org.gradle.api.internal.StartParameterInternal.getConfigurationCache()Lorg/gradle/internal/buildoption/BuildOption$Value;
 	at com.android.build.gradle.internal.StartParameterUtils.isConfigurationCache(StartParameterUtils.kt:30)
 ```
+
+
+
+# gradle7 transform参考
+1. [现在准备好告别Transform了吗？ | 拥抱AGP7.0](https://juejin.cn/post/7016147287889936397)
+2. [手把手带你实战 AGP 7.x ASM 字节码插桩](https://developer.aliyun.com/article/996146)

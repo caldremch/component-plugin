@@ -3,6 +3,9 @@ pluginManagement {
         google()
         mavenCentral()
         gradlePluginPortal()
+        maven {
+            setUrl("repo")
+        }
     }
 }
 dependencyResolutionManagement {
@@ -10,13 +13,16 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        maven {
+            setUrl("repo")
+        }
     }
 }
 //enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
 include ':plugin-api'
 include ':service'
-//include ':module-b'
+include ':module-b'
 include ':module-a'
 include ':app'
 rootProject.name = "component-plugin"

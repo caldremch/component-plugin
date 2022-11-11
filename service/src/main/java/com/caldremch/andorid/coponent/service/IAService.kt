@@ -1,5 +1,5 @@
 package com.caldremch.andorid.coponent.service
 
-interface IAService {
+interface IAService : BaseService {
     fun test()
 }
