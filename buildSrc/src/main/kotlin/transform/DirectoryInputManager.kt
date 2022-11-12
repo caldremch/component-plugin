@@ -7,6 +7,7 @@ import com.android.utils.FileUtils
 import com.caldremch.plugin.utils.RegularUtils
 import org.objectweb.asm.ClassReader
 import org.objectweb.asm.ClassWriter
+import transform.ComponentManager
 
 /**
  *
@@ -25,14 +26,14 @@ object DirectoryInputManager {
                             classNameTemp
                         )
                     ) {
-//                        println("fileAbsPath = "+fileAbsPath)
+                        Logger.log("fileAbsPath = " + fileAbsPath)
                         try {
                             val classReader = ClassReader(file.inputStream())
                             val classWriter = ClassWriter(ClassWriter.COMPUTE_MAXS)
                             //寻找的要注解的class, 不需要path来写入.
                             val classVisitor = FindInjectClzClassVisitor(classWriter, fileAbsPath)
                             classReader.accept(classVisitor, ClassReader.EXPAND_FRAMES)
-                        }catch (e:Exception){
+                        } catch (e: Exception) {
                             e.printStackTrace()
                         }
 
@@ -42,14 +43,15 @@ object DirectoryInputManager {
             }
 
             //visit MainApp, 然后在onCreate中注入代码
-//            VisitorManager.startVisitMainApp()
+            ComponentManager.startVisitMainApp()
 
-            val dest = outputProvider.getContentLocation(directoryInput.name,
+            val dest = outputProvider.getContentLocation(
+                directoryInput.name,
                 directoryInput.contentTypes,
-                directoryInput.scopes, Format.DIRECTORY)
+                directoryInput.scopes, Format.DIRECTORY
+            )
             FileUtils.copyDirectory(directoryInput.file, dest)
         }
-
 
 
     }

@@ -3,8 +3,8 @@ package com.caldremch.android.module.a
 import android.content.Context
 import com.caldremch.andorid.coponent.service.IAService
 import com.caldremch.andorid.coponent.service.ServiceManager
-import com.caldremch.andorid.plugin.api.Component
-import com.caldremch.andorid.plugin.api.IComponent
+import com.caldremch.andorid.plugin.api.RegisterComponent
+import com.caldremch.andorid.plugin.api.IRegisterComponent
 
 /**
  *
@@ -17,8 +17,8 @@ import com.caldremch.andorid.plugin.api.IComponent
  * @describe
  *
  **/
-@Component
-class ModuleComponent : IComponent {
+@RegisterComponent
+class ModuleComponent : IRegisterComponent {
     override fun init(context: Context) {
         ServiceManager.instance.addService(IAService::class.simpleName,  ModuleAService())
     }

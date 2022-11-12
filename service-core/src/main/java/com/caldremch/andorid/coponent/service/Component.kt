@@ -8,10 +8,10 @@ package com.caldremch.andorid.coponent.service
  *
  * @email caldremch@163.com
  *
- * @describe
+ * @describe 组件初始化注册
  *
  **/
 @Target(AnnotationTarget.CLASS)
 @Retention(AnnotationRetention.SOURCE)
-annotation class Component {
+annotation class RegisterComponent {
 }

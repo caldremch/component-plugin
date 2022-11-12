@@ -13,6 +13,6 @@ import android.content.Context
  * @describe
  *
  **/
-interface IComponent {
+interface IRegisterComponent {
     fun init(context: Context)
 }
