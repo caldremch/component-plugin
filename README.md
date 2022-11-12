@@ -1,11 +1,22 @@
-# 组件化示例项目
+## 组件化示例项目
+
+基于ASM进行代码插桩, 最新gradle7-8适配
+
+**环境要求:** 
+
+1. **Android Studio:** Android Studio Flamingo | 2022.2.1 Canary 7 
+2. **gradle版本:** gradle-8.0-milestone-3 
+3. **Java版本:** 11
 
 
+### 主要功能
 
+1. ASM插桩注册信息
+2. gradle8最新transform方式实践
 
-# 问题记录
+## 问题记录
 
-## The request for this plugin could not be satisfied because the plugin is already on the classpath with an unknown version, so compatibility cannot be checked.
+### The request for this plugin could not be satisfied because the plugin is already on the classpath with an unknown version, so compatibility cannot be checked.
 
 注意build.gradle的配置, 因为加入了buildSrc模块, 所以不能指定application和library的version
 
@@ -19,7 +30,7 @@ plugins {
 ```
 
 
-## com.android.builder.errors.EvalIssueException: compileSdkVersion is not specified. Please add it to build.gradle
+### com.android.builder.errors.EvalIssueException: compileSdkVersion is not specified. Please add it to build.gradle
 
 明明已经添加了, 但是还是报错了, 不知道为什么? 
 
@@ -111,7 +122,7 @@ plugins {}块机制和“传统”apply()方法机制之间存在一些关键差
 而其中的限制就是在于 BasePlugin.kt中, 应用插件的时候, 会执行一个androidJdkImage的配置, 这个配置时会检查是否已经
 存在了, 如果存在了, 就会抛出androidJdkImage已经存在的错误
 
-# 说明 androidJdkImage
+### 说明 androidJdkImage
 
 这个配置就是获取android jdk源码文件, 做依赖的
 
@@ -127,7 +138,7 @@ plugins {}块机制和“传统”apply()方法机制之间存在一些关键差
 3. 如何通过脚本去做这个事情, 而不是通过plugin插件, 因为plugin自定义插件,会在内置插件的后面执行, 这样已经晚很多了. 
 
 
-# 解决1 
+#### 解决1 
 
 经过我不懈的努力, 源码分析和反射修改, 最终还是倒地了, 各种移除, 最终还是需要移除一些任务task, 算了, 肯定不是正道, 不然早成功了
 
@@ -149,7 +160,7 @@ plugins {}块机制和“传统”apply()方法机制之间存在一些关键差
                 map_extensions.clear()
 ```
 
-# 解决2
+#### 解决2
 
 只依赖 component.android, 但是会报错, 真的烦人, 在依赖kotlin插件的时候, 要求必须要在plugins block中先注册上
 以下的其中一个插件,不然报错
@@ -173,7 +184,7 @@ plugins {}块机制和“传统”apply()方法机制之间存在一些关键差
 // project.pluginManager.apply(com.android.build.gradle.internal.plugins.AppPlugin::class.java)
 ```
 
-# 当时依旧会报了一个类似错误的日志. 但是并不影响编译, 查了以下这个错误原因, 其实是gradle版本的兼容问题引起的, 但是并不影响编译
+#### 当时依旧会报了一个类似错误的日志. 但是并不影响编译, 查了以下这个错误原因, 其实是gradle版本的兼容问题引起的, 但是并不影响编译
 
 详情可以查看IssueTracker https://issuetracker.google.com/issues/252848749
 
@@ -187,6 +198,6 @@ java.lang.NoSuchMethodError: org.gradle.api.internal.StartParameterInternal.getC
 
 
 
-# gradle7 transform参考
+### gradle7 transform参考
 1. [现在准备好告别Transform了吗？ | 拥抱AGP7.0](https://juejin.cn/post/7016147287889936397)
 2. [手把手带你实战 AGP 7.x ASM 字节码插桩](https://developer.aliyun.com/article/996146)
