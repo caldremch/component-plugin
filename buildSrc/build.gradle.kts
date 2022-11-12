@@ -31,7 +31,8 @@ dependencies {
     implementation("com.android.tools.build:gradle:4.0.1")
     implementation(gradleApi())
     implementation(kotlin("stdlib-jdk8"))
-    implementation("com.caldremch.android:plugin-api:1.0.0")
+    implementation("com.caldremch.android:plugin-api:1.0.2")
+//    implementation(project(":plugin-api"))
 }
 
 val compileKotlin: KotlinCompile by tasks

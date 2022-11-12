@@ -11,7 +11,7 @@ targetCompatibility = "1.8"
 
 group = 'com.caldremch.android'
 archivesBaseName = 'plugin-api'
-version = '1.0.0'
+version = '1.0.2'
 def repo = project.getRootDir().getAbsolutePath()+"/repo"
 System.out.println("plugin-path:"+repo)
 uploadArchives {
