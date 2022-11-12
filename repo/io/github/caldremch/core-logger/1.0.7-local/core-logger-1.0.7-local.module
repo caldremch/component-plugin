@@ -1,0 +1,129 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "io.github.caldremch",
+    "module": "core-logger",
+    "version": "1.0.7-local",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "7.5-rc-2"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.jvm.version": 11,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-jdk8",
+          "version": {
+            "requires": "1.7.10"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "core-logger-1.0.7-local.jar",
+          "url": "core-logger-1.0.7-local.jar",
+          "size": 57032,
+          "sha512": "642869813eaa0dd78209d44fb9a644ba282d3039d54170d81868aa3325673af973cdfd5f620a499bcea4c6dc79501171ad660c2280b86ba0ff1da6e27e9c9f33",
+          "sha256": "ff599ba4b63155aca4ee411546785888c3725600a3a3752c7b74a042899989be",
+          "sha1": "b3a314ea0aef9ff611fc20b2d6361935a90ee5aa",
+          "md5": "a256787badf05e57a46c20e44821766d"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.jvm.version": 11,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "org.java-websocket",
+          "module": "Java-WebSocket",
+          "version": {
+            "requires": "1.5.3"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-jdk8",
+          "version": {
+            "requires": "1.7.10"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "core-logger-1.0.7-local.jar",
+          "url": "core-logger-1.0.7-local.jar",
+          "size": 57032,
+          "sha512": "642869813eaa0dd78209d44fb9a644ba282d3039d54170d81868aa3325673af973cdfd5f620a499bcea4c6dc79501171ad660c2280b86ba0ff1da6e27e9c9f33",
+          "sha256": "ff599ba4b63155aca4ee411546785888c3725600a3a3752c7b74a042899989be",
+          "sha1": "b3a314ea0aef9ff611fc20b2d6361935a90ee5aa",
+          "md5": "a256787badf05e57a46c20e44821766d"
+        }
+      ]
+    },
+    {
+      "name": "javadocElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "javadoc",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "core-logger-1.0.7-local-javadoc.jar",
+          "url": "core-logger-1.0.7-local-javadoc.jar",
+          "size": 261,
+          "sha512": "7e12d65c2598420a5538777556fe7330eb450312502799c5405eba6f4b996ebe8166106e63d9ad86a2ccb827f0360ade3b37e9e3ee886cde03e8042babeea74f",
+          "sha256": "8297f819f9908e9b03b747bdf6efc245815e20151649ad579f75919cfb0a632b",
+          "sha1": "75fac1ba3b93c27180bb4ff9a17a29290e7cca31",
+          "md5": "0773a75fc154b18904077d6872ede76d"
+        }
+      ]
+    },
+    {
+      "name": "sourcesElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "core-logger-1.0.7-local-sources.jar",
+          "url": "core-logger-1.0.7-local-sources.jar",
+          "size": 11627,
+          "sha512": "7b193ffa6e86e525640fd8d304df1bdb8ac60797f01fed59bcfd904225b320482e06606b5a8563c4454e30da2d5d7c70420fdddb58867758a29f22deb8e5e76e",
+          "sha256": "ccc800e90f5a16e7b52606c2c799bb479d97d7bb7768cc745bcefb3145258e81",
+          "sha1": "396d056992156150cf325f74341d863493629ec6",
+          "md5": "e7025be789992bbd5847878889b45a7c"
+        }
+      ]
+    }
+  ]
+}

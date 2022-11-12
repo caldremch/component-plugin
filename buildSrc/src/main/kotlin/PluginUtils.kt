@@ -22,53 +22,53 @@ object PluginUtils {
     /**
      * 复制 debug 签名到 release
      */
-    fun copySign(debugSignConfig:SigningConfig):com.android.builder.model.SigningConfig{
-        return object : com.android.builder.model.SigningConfig{
-            override fun getStoreType(): String {
-                return debugSignConfig.storeType
-            }
-
-            override fun isV1SigningEnabled(): Boolean {
-                return debugSignConfig.isV1SigningEnabled
-
-            }
-
-            override fun isSigningReady(): Boolean {
-                return debugSignConfig.isSigningReady
-
-            }
-
-            override fun getStorePassword(): String {
-                return debugSignConfig.storePassword
-
-            }
-
-            override fun getName(): String {
-                return debugSignConfig.name
-
-            }
-
-            override fun getStoreFile(): File {
-                return debugSignConfig.storeFile
-
-            }
-
-            override fun getKeyAlias(): String {
-                return debugSignConfig.keyAlias
-
-            }
-
-            override fun getKeyPassword(): String {
-                return debugSignConfig.keyPassword
-
-            }
-
-            override fun isV2SigningEnabled(): Boolean {
-                return debugSignConfig.isV2SigningEnabled
-            }
-
-        }
-    }
+//    fun copySign(debugSignConfig:SigningConfig):com.android.builder.model.SigningConfig{
+//        return object : com.android.builder.model.SigningConfig{
+//            override fun getStoreType(): String {
+//                return debugSignConfig.storeType
+//            }
+//
+//            override fun isV1SigningEnabled(): Boolean {
+//                return debugSignConfig.isV1SigningEnabled
+//
+//            }
+//
+//            override fun isSigningReady(): Boolean {
+//                return debugSignConfig.isSigningReady
+//
+//            }
+//
+//            override fun getStorePassword(): String {
+//                return debugSignConfig.storePassword
+//
+//            }
+//
+//            override fun getName(): String {
+//                return debugSignConfig.name
+//
+//            }
+//
+//            override fun getStoreFile(): File {
+//                return debugSignConfig.storeFile
+//
+//            }
+//
+//            override fun getKeyAlias(): String {
+//                return debugSignConfig.keyAlias
+//
+//            }
+//
+//            override fun getKeyPassword(): String {
+//                return debugSignConfig.keyPassword
+//
+//            }
+//
+//            override fun isV2SigningEnabled(): Boolean {
+//                return debugSignConfig.isV2SigningEnabled
+//            }
+//
+//        }
+//    }
 
 
     //* 添加依赖的模块
@@ -118,15 +118,15 @@ object PluginUtils {
         val buildTypesClosure: NamedDomainObjectContainer<BuildType> = android.buildTypes
         val debugConfig = buildTypesClosure.getByName(BuilderConstants.DEBUG)
         val debugSignConfig = debugConfig.signingConfig
-        val tempSign = PluginUtils.copySign(debugSignConfig)
-        val releaseSign = com.android.build.gradle.internal.dsl.SigningConfig(BuilderConstants.RELEASE).initWith(tempSign)
+//        val tempSign = PluginUtils.copySign(debugSignConfig)
+//        val releaseSign = com.android.build.gradle.internal.dsl.SigningConfig(BuilderConstants.RELEASE).initWith(tempSign)
         //给release 添加默认的证书和混淆打开
-        val releaseConfig = buildTypesClosure.getByName(BuilderConstants.RELEASE).apply {
-            isMinifyEnabled = true
-            signingConfig = releaseSign
-        }
+//        val releaseConfig = buildTypesClosure.getByName(BuilderConstants.RELEASE).apply {
+//            isMinifyEnabled = true
+//            signingConfig = releaseSign
+//        }
         println("debugConfig = ${debugConfig.toString()}")
-        println("releaseConfig = ${releaseConfig.toString()}")
+//        println("releaseConfig = ${releaseConfig.toString()}")
     }
 
      fun getBoolean(value: String): Boolean {

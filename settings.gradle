@@ -1,5 +1,26 @@
-include ':plugin-api'
-include ':service'
+pluginManagement {
+    repositories {
+        google()
+        mavenCentral()
+        gradlePluginPortal()
+        maven {
+            setUrl("repo")
+        }
+    }
+}
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+        maven {
+            setUrl("repo")
+        }
+    }
+}
+//enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
+
+include ':service-core'
 include ':module-b'
 include ':module-a'
 include ':app'

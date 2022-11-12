@@ -1,10 +1,10 @@
-package com.caldremch.plugin.utils
+package transform
 
 import com.android.build.api.transform.Format
 import com.android.build.api.transform.TransformInput
 import com.android.build.api.transform.TransformOutputProvider
 import com.android.utils.FileUtils
-import com.caldremch.plugin.visitor.FindInjectClzClassVisitor
+import com.caldremch.plugin.utils.RegularUtils
 import org.objectweb.asm.ClassReader
 import org.objectweb.asm.ClassWriter
 import transform.ComponentManager

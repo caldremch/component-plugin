@@ -1,13 +1,17 @@
+import PluginConstant.APPLICATION
+import PluginConstant.IS_APP
+import PluginConstant.IS_APPLY_KOTLIN_PLUGIN
+import PluginConstant.LIBRARY
 import PluginConstant.RES_PREFIX
 import com.android.build.gradle.AppExtension
 import com.android.build.gradle.BaseExtension
 import com.android.build.gradle.LibraryExtension
-import com.android.build.gradle.internal.dsl.BuildType
-import com.android.builder.core.BuilderConstants
-import org.gradle.api.NamedDomainObjectContainer
+import com.android.build.gradle.internal.utils.KOTLIN_ANDROID_PLUGIN_ID
+import com.caldremch.android.log.DebugLogInitializer
 import org.gradle.api.Project
 import org.gradle.api.tasks.SourceSet
-import java.util.*
+import transform.Transform
+import java.util.Locale
 
 /**
  *
@@ -26,26 +30,27 @@ import java.util.*
  **/
 class ComponentPlugin : BasePlugin<Project>() {
 
-    //app 宿主的名字, 暂时写死, 任何module都可以是宿主的概念
-    private val HOST_APP = "app"
+    init{
+        DebugLogInitializer.initWithUrl(true, "localhost:34001")
+    }
 
     override fun apply(project: Project) {
 
         var isApp = false
         println("${project.name} starting......")
         println("project.path=${project.path}")
-        if (!project.hasProperty(PluginConstant.IS_APP)) {
+        if (!project.hasProperty(IS_APP)) {
             println("${project.name} isApp is not config")
         } else {
             println("${project.name} isApp config found")
-            isApp = PluginUtils.getBoolean(project.properties[PluginConstant.IS_APP] as String)
+            isApp = PluginUtils.getBoolean(project.properties[IS_APP] as String)
             println("${project.name} is running as " + if (isApp) "Application" else "Library")
         }
 
         handleTask(project, isApp)
     }
 
-    private fun handleTask(project: Project, propertiesisApp: Boolean) {
+    private fun handleTask(project: Project, propertiesIsApp: Boolean) {
 
 
         var isAssemble = false
@@ -75,7 +80,7 @@ class ComponentPlugin : BasePlugin<Project>() {
         }
 
 
-        var isApp = propertiesisApp
+        var isApp = propertiesIsApp
 
         //必须是打包的时候,做判断(项目同步不判断)
         if (isApp && isAssemble){
@@ -84,20 +89,36 @@ class ComponentPlugin : BasePlugin<Project>() {
             isApp = isDefinitelyHost || project.name.trim() == runModuleName
         }
 
-        if (project.hasProperty("isApp")){
-            project.setProperty("isApp", isApp)
+        var isApplyKotlinPlugin = true
+        if (project.hasProperty(IS_APP)){
+            project.setProperty(IS_APP, isApp)
         }
-        println("properties isApp:$propertiesisApp")
+        if (project.hasProperty(IS_APPLY_KOTLIN_PLUGIN)){
+            isApplyKotlinPlugin = PluginUtils.getBoolean(project.properties[IS_APPLY_KOTLIN_PLUGIN] as String)
+            project.setProperty(IS_APPLY_KOTLIN_PLUGIN, isApplyKotlinPlugin)
+        }
+        println("properties isApp:$propertiesIsApp")
         println("finally isApp:$isApp")
         if (isApp) {
-            project.apply(applicationPlugin)
+            val existAppPlugin = project.pluginManager.findPlugin(APPLICATION) != null
+            if(existAppPlugin.not()){
+                project.plugins.apply(APPLICATION)
+                if(isApplyKotlinPlugin){
+                    project.pluginManager.apply(KOTLIN_ANDROID_PLUGIN_ID)
+                }
+            }
             //如果是打包, 处理依赖, 普通同步不操作
             addDepModule(project)
-
-            //add transform
-            project.extensions.getByType(AppExtension::class.java).registerTransform(ComponentTransform(project))
+            Transform.doTransform(project)
         } else {
-            project.apply(libraryPlugin)
+            val existLibraryPlugin = project.pluginManager.findPlugin(LIBRARY) != null
+            if(existLibraryPlugin.not()){
+                project.plugins.apply(LIBRARY)
+                if(isApplyKotlinPlugin){
+                    project.pluginManager.apply(KOTLIN_ANDROID_PLUGIN_ID)
+                }
+            }
+
         }
 
         //处理资源问题
@@ -150,6 +171,11 @@ class ComponentPlugin : BasePlugin<Project>() {
             main.res.exclude("src/app/res/**")
             main.res.exclude("src/app/assets/**")
         }
+    }
+
+    companion object {
+        //app 宿主的名字, 暂时写死, 任何module都可以是宿主的概念
+        private const val HOST_APP = "app"
     }
 
 }

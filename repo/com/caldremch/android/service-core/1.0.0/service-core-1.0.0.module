@@ -1,0 +1,82 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "com.caldremch.android",
+    "module": "service-core",
+    "version": "1.0.0",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "8.0-milestone-3"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.jvm.version": 8,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-jdk8",
+          "version": {
+            "requires": "1.7.20"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "service-core-1.0.0.jar",
+          "url": "service-core-1.0.0.jar",
+          "size": 7706,
+          "sha512": "ccc533a75baa835809d02f410d62d0be9b7f3054b064c7045ea1ca2a553c49cef2b68c333cde735d95f5dd1f93d0fb16ab8182bbfd4e109c9dac7e39f475f3b2",
+          "sha256": "15d33da79e81a316e188423fc883eebb2e018ebb0f4452fe2529d5f2e90f9a27",
+          "sha1": "38e7044d2eafbbf3f9a10fe9ae483da7f00bbfc1",
+          "md5": "dcee9a2c02d08d648c7bf4d6b266ce0c"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.jvm.version": 8,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-jdk8",
+          "version": {
+            "requires": "1.7.20"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "service-core-1.0.0.jar",
+          "url": "service-core-1.0.0.jar",
+          "size": 7706,
+          "sha512": "ccc533a75baa835809d02f410d62d0be9b7f3054b064c7045ea1ca2a553c49cef2b68c333cde735d95f5dd1f93d0fb16ab8182bbfd4e109c9dac7e39f475f3b2",
+          "sha256": "15d33da79e81a316e188423fc883eebb2e018ebb0f4452fe2529d5f2e90f9a27",
+          "sha1": "38e7044d2eafbbf3f9a10fe9ae483da7f00bbfc1",
+          "md5": "dcee9a2c02d08d648c7bf4d6b266ce0c"
+        }
+      ]
+    }
+  ]
+}

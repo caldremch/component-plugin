@@ -10,7 +10,20 @@
  *
  **/
 object Logger {
+
+    private const val TAG  = "ComponentPlugin"
+
+
     fun log(msg:String?){
         println("> component-plugin :$msg")
+    }
+
+
+    fun d(msg:String?){
+        println(String.format("[%s] %s", TAG, msg?:""))
+    }
+
+    fun e(msg:String?){
+        System.err.println(String.format("[%s] %s", TAG, msg?:""))
     }
 }

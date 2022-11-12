@@ -1,8 +1,9 @@
 package com.caldremch.android.plugin
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import kotlinx.android.synthetic.main.activity_main.*
+import android.widget.TextView
 import java.lang.Exception
 import java.lang.StringBuilder
 
@@ -10,6 +11,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        val context: Context = this
 
         val sb = StringBuilder()
         sb.append("空壳App").append("\n")
@@ -29,6 +32,6 @@ class MainActivity : AppCompatActivity() {
             e.printStackTrace()
         }
 
-        tv.text = sb.toString()
+        findViewById<TextView>(R.id.tv).text = sb.toString()
     }
 }

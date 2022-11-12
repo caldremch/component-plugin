@@ -1,8 +1,7 @@
 package com.caldremch.android.module.a
 
 import android.util.Log
-import android.widget.Toast
-import com.caldremch.andorid.coponent.service.IAService
+import com.caldremch.andorid.coponent.service.BaseService
 
 /**
  *
@@ -15,8 +14,8 @@ import com.caldremch.andorid.coponent.service.IAService
  * @describe
  *
  **/
-class ModuleAService : IAService {
-    override fun test() {
+class ModuleAService : BaseService {
+     fun test() {
         Log.d("ModuleAService", "ModuleAService: test")
     }
 }

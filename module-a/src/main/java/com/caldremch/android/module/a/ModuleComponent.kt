@@ -1,10 +1,8 @@
 package com.caldremch.android.module.a
 
 import android.content.Context
-import com.caldremch.andorid.coponent.service.IAService
-import com.caldremch.andorid.coponent.service.ServiceManager
-import com.caldremch.andorid.plugin.api.RegisterComponent
-import com.caldremch.andorid.plugin.api.IRegisterComponent
+import com.caldremch.andorid.coponent.service.IRegisterComponent
+import com.caldremch.andorid.coponent.service.RegisterComponent
 
 /**
  *
@@ -20,6 +18,6 @@ import com.caldremch.andorid.plugin.api.IRegisterComponent
 @RegisterComponent
 class ModuleComponent : IRegisterComponent {
     override fun init(context: Context) {
-        ServiceManager.getInstance().addService(IAService::class.simpleName,  ModuleAService())
+//        ServiceManager.instance.addService(IAService::class.simpleName,  ModuleAService())
     }
 }

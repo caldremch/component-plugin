@@ -1,45 +1,43 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-
 plugins {
     `kotlin-dsl`
-    kotlin("jvm") version "1.4.0"
+    id ("java-gradle-plugin")
 }
 
-
-buildscript {
-    repositories {
-        mavenLocal()
-        jcenter()
-        google()
-    }
-    dependencies {
-        classpath("com.android.tools.build:gradle:4.0.1")
-    }
-
-}
-val plugin_api_repo_uri =project.rootDir.absolutePath.replace("/buildSrc", "") + File.separator + "repo"
-System.out.println("plugin_api_repo_uri=${plugin_api_repo_uri}")
 repositories {
-    maven { url = uri(plugin_api_repo_uri) }
-    mavenLocal()
-    mavenCentral()
-    jcenter()
+    maven {
+        setUrl("../repo")
+    }
     google()
+    mavenCentral()
+
 }
 
+tasks.withType<KotlinCompile>().configureEach {
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_11.toString()
+    }
+}
+val asm_version = "9.2"
 dependencies {
-    implementation("com.android.tools.build:gradle:4.0.1")
+    implementation("com.android.tools.build:gradle:8.0.0-alpha07")
+    implementation("com.android.tools:common:30.3.1")
+    implementation(kotlin("stdlib"))
     implementation(gradleApi())
-    implementation(kotlin("stdlib-jdk8"))
-    implementation("com.caldremch.android:plugin-api:1.0.2")
-//    implementation(project(":plugin-api"))
+    implementation("com.caldremch.android:service-core:1.0.0")
+    implementation("io.github.caldremch:core-logger:1.0.7-local")
+    api ("org.ow2.asm:asm:$asm_version")
+    api ("org.ow2.asm:asm-analysis:$asm_version")
+    api ("org.ow2.asm:asm-commons:$asm_version")
+    api ("org.ow2.asm:asm-tree:$asm_version")
+    api ("org.ow2.asm:asm-util:$asm_version")
 }
 
-val compileKotlin: KotlinCompile by tasks
-compileKotlin.kotlinOptions {
-    jvmTarget = "1.8"
-}
-val compileTestKotlin: KotlinCompile by tasks
-compileTestKotlin.kotlinOptions {
-    jvmTarget = "1.8"
+gradlePlugin {
+    plugins {
+        create("myPlugins") {
+            id = "component.android"
+            implementationClass = "ComponentPlugin"
+        }
+    }
 }
