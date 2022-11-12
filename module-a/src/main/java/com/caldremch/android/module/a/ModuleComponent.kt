@@ -20,6 +20,6 @@ import com.caldremch.andorid.plugin.api.IComponent
 @Component
 class ModuleComponent : IComponent {
     override fun init(context: Context) {
-        ServiceManager.getInstance().addService(IAService::class.simpleName,  ModuleAService())
+        ServiceManager.instance.addService(IAService::class.simpleName,  ModuleAService())
     }
 }

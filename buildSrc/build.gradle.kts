@@ -24,7 +24,7 @@ dependencies {
     implementation("com.android.tools:common:30.3.1")
     implementation(kotlin("stdlib"))
     implementation(gradleApi())
-    implementation("com.caldremch.android:plugin-api:1.0.0")
+    implementation("com.caldremch.android:service-core:1.0.0")
     implementation("io.github.caldremch:core-logger:1.0.7-local")
     api ("org.ow2.asm:asm:$asm_version")
     api ("org.ow2.asm:asm-analysis:$asm_version")

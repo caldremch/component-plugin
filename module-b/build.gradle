@@ -44,8 +44,7 @@ dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation 'androidx.appcompat:appcompat:1.5.1'
-    implementation(project(":service"))
-    implementation(project(":plugin-api"))
+    implementation(project(":service-core"))
     implementation "io.insert-koin:koin-core:3.2.2"
 
 }

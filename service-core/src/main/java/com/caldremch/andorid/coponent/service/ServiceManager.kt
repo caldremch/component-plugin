@@ -1,5 +1,6 @@
-package com.caldremch.andorid.coponent.service;
-import android.text.TextUtils;
+package com.caldremch.andorid.coponent.service
+
+import android.text.TextUtils
 
 /**
  * @author Caldremch
@@ -7,95 +8,81 @@ import android.text.TextUtils;
  * @email caldremch@163.com
  * @describe
  **/
-
-
-import com.caldremch.andorid.plugin.api.IComponent;
-
-import java.util.HashMap;
-
 /**
  * @author Caldremch
  * @date 2019-03-08 10:29
  * @email caldremch@163.com
  * @describe
- **/
-public class ServiceManager {
+ */
+class ServiceManager private constructor() {
 
-    private HashMap<String, Object> services = new HashMap<>();
+    private val services = HashMap<String, Any>()
+    private val serviceClzs = HashMap<String, Class<out BaseService?>>()
 
-    private HashMap<String, Class<? extends BaseService>> allServices = new HashMap<>();
-
-    //注册的组件的集合
-    private static volatile ServiceManager sInstance;
-
-    private ServiceManager() {
-        allServices.put(IAService.class.getName(), IAService.class);
+    @Synchronized
+    fun addService(serviceName: String?, serviceImpl: Any?) {
+        if (serviceName == null || serviceImpl == null) {
+            return
+        }
+        services[serviceName] = serviceImpl
     }
 
-    public static ServiceManager getInstance() {
-
-        if (sInstance == null) {
-
-            synchronized (ServiceManager.class) {
-
-                if (sInstance == null) {
-                    sInstance = new ServiceManager();
+    @Synchronized
+    fun  <T>getService(serviceName: String): T? {
+        return if (TextUtils.isEmpty(serviceName)) {
+            null
+        } else{
+           var service =  services[serviceName]
+            if(service == null){
+                service =   serviceClzs[serviceName]?.newInstance()?.apply {
+                    services[serviceName] = this
                 }
+            }
+            service as T?
+        }
+    }
 
+    @Synchronized
+    fun <T> getService(clz: Class<T>): T? {
+        return if (TextUtils.isEmpty(clz.simpleName)) {
+            null
+        } else getService(clz.simpleName)
+    }
+
+    @Synchronized
+    fun removeService(serviceName: String) {
+        if (TextUtils.isEmpty(serviceName)) {
+            return
+        }
+        services.remove(serviceName)
+    }
+
+    companion object {
+        //注册的组件的集合
+        @Volatile
+        private var sInstance: ServiceManager? = null
+        val instance: ServiceManager?
+            get() {
+                if (sInstance == null) {
+                    synchronized(ServiceManager::class.java) {
+                        if (sInstance == null) {
+                            sInstance = ServiceManager()
+                        }
+                    }
+                }
+                return sInstance
             }
 
+        @Synchronized
+        fun <T> start(clz: Class<T>, callback: IServiceCallback<T>?): Boolean {
+            val service = instance!!.getService(clz)
+            if (service != null && callback != null) {
+                callback.onService(service)
+            }
+            if (service == null && callback != null) {
+                callback.noService()
+            }
+            return service == null
         }
-
-        return sInstance;
     }
-
-
-    public synchronized void addService(String serviceName, Object serviceImpl) {
-        if (serviceName == null || serviceImpl == null) {
-            return;
-        }
-
-        services.put(serviceName, serviceImpl);
-
-    }
-
-    public synchronized Object getService(String serviceName) {
-        if (TextUtils.isEmpty(serviceName)) {
-            return null;
-        }
-
-        return services.get(serviceName);
-    }
-
-
-    public static <T> boolean start(Class<T> clz, IServiceCallback<T> callback) {
-        T service = getInstance().getService(clz);
-        if (service != null && callback != null) {
-            callback.onService(service);
-        }
-
-        if (service == null && callback != null){
-//            ToastUtils.show("组件未加载");
-            callback.noService();
-        }
-        return service == null;
-    }
-
-    public synchronized <T> T getService(Class<T> clz) {
-        if (TextUtils.isEmpty(clz.getSimpleName())) {
-            return null;
-        }
-
-        return (T) services.get(clz.getSimpleName());
-    }
-
-    public synchronized void removeService(String serviceName) {
-        if (TextUtils.isEmpty(serviceName)) {
-            return;
-        }
-
-        services.remove(serviceName);
-    }
-
-
 }

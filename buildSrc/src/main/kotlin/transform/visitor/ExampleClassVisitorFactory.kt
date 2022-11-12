@@ -43,11 +43,6 @@ abstract class ExampleClassVisitorFactory : AsmClassVisitorFactory<ExampleParams
                 !classData.className.endsWith(".R") &&
                 !classData.className.endsWith(".R\$id")
 
-
-
-//        if(ok && classData.classAnnotations.isNotEmpty() ){
-//            Logger.d("${classData.className}--注解->${classData.classAnnotations.joinToString(",")}")
-//        }
         val thro =  ok && classData.className.startsWith("com.caldremch")
 
         if(thro){

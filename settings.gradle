@@ -20,8 +20,7 @@ dependencyResolutionManagement {
 }
 //enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
-include ':plugin-api'
-include ':service'
+include ':service-core'
 include ':module-b'
 include ':module-a'
 include ':app'
