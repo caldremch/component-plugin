@@ -1,7 +1,8 @@
 package transform.visitor
 
+//import com.caldremch.andorid.coponent.service.IComponent
 import Logger
-import com.caldremch.andorid.coponent.service.IComponent
+import com.caldremch.andorid.coponent.service.IRegisterComponent
 import com.caldremch.android.log.errorLog
 import org.objectweb.asm.AnnotationVisitor
 import org.objectweb.asm.ClassVisitor
@@ -38,8 +39,7 @@ class FindInjectClassVisitor(classVisitor: ClassVisitor?) :
         Logger.e("FindInjectClassVisitor访问-->:${name}")
         val isImplementIComponent =
             interfaces != null && interfaces.isNotEmpty() && interfaces.contains(
-
-                ClassUtils.getClassName(IComponent::class.java)
+                ClassUtils.getClassName(IRegisterComponent::class.java)
             )
         if (isImplementIComponent) {
             Logger.e("命中: ${name + Arrays.toString(interfaces)}")

@@ -16,11 +16,5 @@
       <version>1.7.20</version>
       <scope>compile</scope>
     </dependency>
-    <dependency>
-      <groupId>com.caldremch.android</groupId>
-      <artifactId>plugin-api</artifactId>
-      <version>1.0.0</version>
-      <scope>runtime</scope>
-    </dependency>
   </dependencies>
 </project>

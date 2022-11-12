@@ -59,19 +59,10 @@ class ServiceManager private constructor() {
 
     companion object {
         //注册的组件的集合
-        @Volatile
-        private var sInstance: ServiceManager? = null
-        val instance: ServiceManager?
-            get() {
-                if (sInstance == null) {
-                    synchronized(ServiceManager::class.java) {
-                        if (sInstance == null) {
-                            sInstance = ServiceManager()
-                        }
-                    }
-                }
-                return sInstance
-            }
+         val instance: ServiceManager by lazy(mode = LazyThreadSafetyMode.SYNCHRONIZED){
+            ServiceManager()
+        }
+
 
         @Synchronized
         fun <T> start(clz: Class<T>, callback: IServiceCallback<T>?): Boolean {

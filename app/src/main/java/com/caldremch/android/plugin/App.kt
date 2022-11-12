@@ -1,8 +1,6 @@
 package com.caldremch.android.plugin
 
 import android.app.Application
-import com.caldremch.andorid.plugin.api.HostApp
-import com.caldremch.andorid.plugin.api.KtHostApp
 
 /**
  *
@@ -15,7 +13,7 @@ import com.caldremch.andorid.plugin.api.KtHostApp
  * @describe
  *
  **/
-class App : Application(), KtHostApp{
+class App : Application(){
     override fun onCreate() {
         super.onCreate()
     }

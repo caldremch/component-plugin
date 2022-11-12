@@ -38,11 +38,11 @@
         {
           "name": "service-core-1.0.0.jar",
           "url": "service-core-1.0.0.jar",
-          "size": 7659,
-          "sha512": "27a9a4d2a65312015ae30957cd5a288b66ec3cc9deb384ee7de9e67019a9dfb1d2b65916639bd53e0511f02da438c62627ad662dba395aac53fbedaa6099bdb7",
-          "sha256": "adaf4a39acf1e047af4b391bed66ef8b5e320ae181eeb8719b9aa1abfc932480",
-          "sha1": "498ce5317e3a7a6864c9e833ff6c78c3e3e13115",
-          "md5": "dcb86e5770c9804537d985f4fe6bf7f8"
+          "size": 7706,
+          "sha512": "ccc533a75baa835809d02f410d62d0be9b7f3054b064c7045ea1ca2a553c49cef2b68c333cde735d95f5dd1f93d0fb16ab8182bbfd4e109c9dac7e39f475f3b2",
+          "sha256": "15d33da79e81a316e188423fc883eebb2e018ebb0f4452fe2529d5f2e90f9a27",
+          "sha1": "38e7044d2eafbbf3f9a10fe9ae483da7f00bbfc1",
+          "md5": "dcee9a2c02d08d648c7bf4d6b266ce0c"
         }
       ]
     },
@@ -59,13 +59,6 @@
       },
       "dependencies": [
         {
-          "group": "com.caldremch.android",
-          "module": "plugin-api",
-          "version": {
-            "requires": "1.0.0"
-          }
-        },
-        {
           "group": "org.jetbrains.kotlin",
           "module": "kotlin-stdlib-jdk8",
           "version": {
@@ -77,11 +70,11 @@
         {
           "name": "service-core-1.0.0.jar",
           "url": "service-core-1.0.0.jar",
-          "size": 7659,
-          "sha512": "27a9a4d2a65312015ae30957cd5a288b66ec3cc9deb384ee7de9e67019a9dfb1d2b65916639bd53e0511f02da438c62627ad662dba395aac53fbedaa6099bdb7",
-          "sha256": "adaf4a39acf1e047af4b391bed66ef8b5e320ae181eeb8719b9aa1abfc932480",
-          "sha1": "498ce5317e3a7a6864c9e833ff6c78c3e3e13115",
-          "md5": "dcb86e5770c9804537d985f4fe6bf7f8"
+          "size": 7706,
+          "sha512": "ccc533a75baa835809d02f410d62d0be9b7f3054b064c7045ea1ca2a553c49cef2b68c333cde735d95f5dd1f93d0fb16ab8182bbfd4e109c9dac7e39f475f3b2",
+          "sha256": "15d33da79e81a316e188423fc883eebb2e018ebb0f4452fe2529d5f2e90f9a27",
+          "sha1": "38e7044d2eafbbf3f9a10fe9ae483da7f00bbfc1",
+          "md5": "dcee9a2c02d08d648c7bf4d6b266ce0c"
         }
       ]
     }
