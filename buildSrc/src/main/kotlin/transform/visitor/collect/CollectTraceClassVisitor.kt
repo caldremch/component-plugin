@@ -1,4 +1,4 @@
-package transform.visitor
+package transform.visitor.collect
 
 //import com.caldremch.andorid.coponent.service.IComponent
 import Logger
@@ -6,15 +6,15 @@ import com.caldremch.andorid.coponent.service.IRegisterComponent
 import com.caldremch.android.log.errorLog
 import org.objectweb.asm.AnnotationVisitor
 import org.objectweb.asm.ClassVisitor
-import org.objectweb.asm.MethodVisitor
 import org.objectweb.asm.Opcodes
 import transform.ClassUtils
 import java.util.Arrays
 
 /**
  * Created by Leon on 2022/11/8.
- */
-class FindInjectClassVisitor(classVisitor: ClassVisitor?) :
+ * 第一个classVisitor就是寻找所有的服务
+*/
+class CollectTraceClassVisitor(classVisitor: ClassVisitor?) :
     ClassVisitor(Opcodes.ASM9, classVisitor) {
 
 
@@ -57,21 +57,21 @@ class FindInjectClassVisitor(classVisitor: ClassVisitor?) :
 
     }
 
-    override fun visitMethod(
-        access: Int,
-        name: String?,
-        descriptor: String?,
-        signature: String?,
-        exceptions: Array<out String>?
-    ): MethodVisitor {
-        val oldMV = super.visitMethod(access, name, descriptor, signature, exceptions)
-        if (isManager) {
-            isManager = false;
-            return MyMethodVisitor(oldMV)
-        } else {
-            return oldMV
-        }
-    }
+//    override fun visitMethod(
+//        access: Int,
+//        name: String?,
+//        descriptor: String?,
+//        signature: String?,
+//        exceptions: Array<out String>?
+//    ): MethodVisitor {
+//        val oldMV = super.visitMethod(access, name, descriptor, signature, exceptions)
+//        if (isManager) {
+//            isManager = false;
+//            return MyMethodVisitor(oldMV)
+//        } else {
+//            return oldMV
+//        }
+//    }
 
 
     override fun visitAnnotation(descriptor: String?, visible: Boolean): AnnotationVisitor {
